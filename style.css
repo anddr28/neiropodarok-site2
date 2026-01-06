@@ -126,10 +126,96 @@ textarea{min-height:90px}
 
 #toTop:hover,#toTop:focus{transform:translateY(-4px) scale(1.05);box-shadow:0 28px 80px rgba(122,92,246,0.18);animation:neon 1.6s infinite alternate}
 
-@media (max-width:980px){
-  .hero{grid-template-columns:1fr}
-  .gallery{grid-template-columns:repeat(2,1fr)}
-  .video-grid{flex-direction:column}
-  .video-col.narrow{width:100%}
-  .nav{gap:8px}
+/* ================= АДАПТИВНАЯ ВЕРСТКА (УЛУЧШЕННАЯ) ================= */
+
+/* Планшеты и небольшие ноутбуки (до 980px) */
+@media (max-width: 980px) {
+  .hero {
+    grid-template-columns: 1fr; /* Видео уходит под текст */
+    text-align: center;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-cta {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, 1fr); /* 2 картинки в ряд */
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr; /* Футер в одну колонку */
+    text-align: center;
+  }
+
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Смартфоны (до 480px) */
+@media (max-width: 480px) {
+  .header-inner {
+    flex-direction: column; /* Логотип сверху, меню снизу */
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .nav {
+    flex-wrap: wrap; /* Ссылки не вылетают за экран */
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .nav-link {
+    font-size: 14px;
+    padding: 5px 8px;
+  }
+
+  .hero-h1 {
+    font-size: 24px; /* Заголовок поменьше */
+  }
+
+  .hero-cta {
+    flex-direction: column; /* Кнопки одна под другой */
+    width: 100%;
+  }
+
+  .hero-cta .btn {
+    width: 100%; /* Кнопки на всю ширину */
+  }
+
+  .feature {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* Кнопка "Наверх" чуть выше, чтобы не мешать навигации браузера */
+  #toTop {
+    width: 44px;
+    height: 44px;
+    right: 15px;
+    bottom: 25px;
+  }
+
+  .modal-card {
+    width: 98%;
+    padding: 8px;
+  }
+}
+
+/* Улучшение тач-взаимодействия */
+@media (pointer: coarse) {
+  .btn, .nav-link, .faq-q {
+    min-height: 44px; /* Минимальный размер области нажатия по стандартам Apple/Google */
+  }
 }
