@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Neiropodarok — реалистичные видео-поздравления</title>
+  <meta name="description" content="Neiropodarok — реалистичные видео-поздравления от звёзд.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="На главную">
+        <div class="logo-circle"><img src="images/logo.jpg" alt="Neiropodarok logo"></div>
+        <div class="brand-text">
+          <div class="brand-title">Neiropodarok</div>
+          <div class="brand-sub">Персональные видеопоздравления — незабываемый подарок</div>
+        </div>
+      </a>
+
+      <nav class="nav" role="navigation" aria-label="Главное меню">
+        <a class="nav-link" href="#examples">Примеры</a>
+        <a class="nav-link" href="#how">Как заказать</a>
+        <a class="nav-link" href="#faq">FAQ</a>
+
+        <!-- соц-кнопки в header (активные) -->
+        <a class="social-link header-tg" href="https://t.me/yourchannel" target="_blank" rel="noopener" aria-label="Telegram">Telegram</a>
+        <a class="social-link header-vk" href="https://vk.ru" target="_blank" rel="noopener" aria-label="VK">VK</a>
+
+        <button id="topOrder" class="btn btn-primary" aria-label="Заказать">Заказать</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <section id="top" class="hero container">
+      <div class="hero-left">
+        <h1 class="hero-h1">Персональные видео-поздравления от любимых звёзд</h1>
+        <p class="hero-lead">Реалистично, быстро и красиво. Оформление — ≈5 минут, готово — ≈30 минут.</p>
+
+        <div class="hero-cta">
+          <button id="orderBtn" class="btn btn-primary">Заказать за 5 минут</button>
+          <button id="demoBtn" class="btn btn-ghost">Посмотреть демо</button>
+        </div>
+
+        <!-- метки (plain text, не кнопки) -->
+        <div class="features" aria-hidden="true">
+          <div class="feature"><span class="plain-label">Оформление</span><div class="f-desc">≈ 5 минут</div></div>
+          <div class="feature"><span class="plain-label">Готово</span><div class="f-desc">≈ 30 минут</div></div>
+        </div>
+
+        <!-- Отступ отделяющий метки и форму -->
+        <div class="spacer"></div>
+
+        <!-- CREATE FORM -->
+        <div id="createCard" class="card create-card" aria-labelledby="createTitle">
+          <h3 id="createTitle">Создать видео-поздравление</h3>
+          <form id="createForm" autocomplete="off" novalidate>
+            <label for="event">Событие</label>
+            <select id="event" name="event" required>
+              <option value="">— выберите —</option>
+              <option value="birthday">Юбилей</option>
+              <option value="wedding">Свадьба</option>
+              <option value="anniversary">Годовщина</option>
+              <option value="corporate">Корпоратив</option>
+              <option value="graduation">Выпускной</option>
+              <option value="other">Другое</option>
+            </select>
+
+            <label for="star">Желаемая звезда (имя)</label>
+            <input id="star" name="star" placeholder="Например: Иван Иванов">
+
+            <label for="script">Краткий сценарий / пожелание</label>
+            <textarea id="script" name="script" placeholder="Короткая инструкция для исполнителя"></textarea>
+
+            <div class="form-row">
+              <button type="submit" class="btn btn-primary">Отправить запрос</button>
+              <div id="formMsg" class="form-msg" aria-live="polite"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- RIGHT: thumbs + hero video -->
+      <aside class="hero-right">
+        <div class="glass">
+          <div class="thumb-row">
+            <div class="thumb tile" data-src="images/shapka.jpg" tabindex="0"><img src="images/shapka.jpg" alt="Пример" draggable="false"></div>
+            <div class="thumb tile" data-src="images/buzova.jpg" tabindex="0"><img src="images/buzova.jpg" alt="Пример" draggable="false"></div>
+          </div>
+
+          <div id="heroVideoParent" class="video-block">
+            <!-- поменять hero-видео можно через setHeroVideo('images/yourfile.mp4') -->
+            <video id="heroVideo" playsinline preload="metadata" controls controlsList="nodownload" disablepictureinpicture>
+              <source src="images/hero_comedy.mp4" type="video/mp4">
+            </video>
+            <div class="wm">Neiropodarok • demo</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- EXAMPLES -->
+    <section id="examples" class="container section">
+      <h2 class="section-title">Примеры</h2>
+
+      <div class="gallery" id="gallery">
+        <div class="tile" data-src="images/shapka.jpg" tabindex="0"><img src="images/shapka.jpg" alt=""></div>
+        <div class="tile" data-src="images/buzova.jpg" tabindex="0"><img src="images/buzova.jpg" alt=""></div>
+        <div class="tile" data-src="images/smartphone.jpg" tabindex="0"><img src="images/smartphone.jpg" alt=""></div>
+        <div class="tile" data-src="images/shapka.jpg" tabindex="0"><img src="images/shapka.jpg" alt=""></div>
+      </div>
+
+      <p class="muted">Кликните по фото — откроется защищённый предпросмотр (canvas).</p>
+
+      <div class="video-grid">
+        <div class="video-col">
+          <div class="card video-card">
+            <video class="demo" playsinline controls controlsList="nodownload" disablepictureinpicture>
+              <source src="images/video1.mp4" type="video/mp4">
+            </video>
+            <div class="wm">demo • Neiropodarok</div>
+          </div>
+
+          <div class="card video-card">
+            <video class="demo" playsinline controls controlsList="nodownload" disablepictureinpicture>
+              <source src="images/video2.mp4" type="video/mp4">
+            </video>
+            <div class="wm">demo • Neiropodarok</div>
+          </div>
+        </div>
+
+        <div class="video-col narrow">
+          <h3 class="mini-title">Портретное (мобайл)</h3>
+          <div class="card video-card">
+            <video id="verticalVideo" playsinline controls controlsList="nodownload" disablepictureinpicture>
+              <source src="images/video_vertical.mp4" type="video/mp4">
+            </video>
+            <div class="wm">vertical • Neiropodarok</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW -->
+    <section id="how" class="container section">
+      <h2 class="section-title">Как это работает</h2>
+      <div class="steps">
+        <div class="step card"><div class="num">1</div><div class="stitle">Выбираете звезду</div><div class="sdesc muted">Фильтры и доступность</div></div>
+        <div class="step card"><div class="num">2</div><div class="stitle">Конфигурируете текст</div><div class="sdesc muted">Тон, имя, детали</div></div>
+        <div class="step card"><div class="num">3</div><div class="stitle">Получаете видео</div><div class="sdesc muted">Промо-версия с водяным знаком</div></div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="container section">
+      <h2 class="section-title">FAQ</h2>
+      <div class="faq">
+        <div class="faq-item">
+          <button class="faq-q">Сколько времени занимает оформление?<span class="t">+</span></button>
+          <div class="faq-a">Оформление ≈5 минут; обычно готово ≈30 минут.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Насколько реалистично?<span class="t">+</span></button>
+          <div class="faq-a">Для развлекательных целей — очень реалистично. Материалы помечаются как ИИ.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Можно ли задать текст?<span class="t">+</span></button>
+          <div class="faq-a">Да — укажите сценарий в форме.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER (информативный, без упоминания DRM/production или политики) -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-col">
+          <div class="logo-circle small"><img src="images/logo.jpg" alt="logo"></div>
+          <div class="brand-title small">Neiropodarok</div>
+          <div class="muted">Персональные видео-поздравления</div>
+        </div>
+
+        <div class="footer-col">
+          <h4>О сервисе</h4>
+          <p class="muted">Мы создаём развлекательные персональные видео-поздравления с пометкой ИИ.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Поддержка</h4>
+          <p class="muted">support@neiropodarok.example<br>+7 (000) 000-00-00</p>
+          <a href="#createCard" class="btn btn-small">Оформить заказ</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Мы в соцсетях</h4>
+          <div style="display:flex;gap:10px;margin-top:8px">
+            <a class="social-link footer-tg" href="https://t.me/yourchannel" target="_blank" rel="noopener" aria-label="Telegram">Telegram</a>
+            <a class="social-link footer-vk" href="https://vk.ru" target="_blank" rel="noopener" aria-label="VK">VK</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container footer-note muted">Материалы, созданные ИИ, предназначены для развлечения. Не использовать для обмана.</div>
+    </footer>
+
+    <!-- UP BUTTON -->
+    <button id="toTop" aria-label="Наверх">↑</button>
+  </main>
+
+  <!-- CANVAS MODAL (overlay clickable to close) -->
+  <div id="canvasModal" class="modal" aria-hidden="true" style="display:none;">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head">
+        <strong id="modalTitle">Предпросмотр</strong>
+        <button id="closeModal" class="btn-close" aria-label="Закрыть">✕</button>
+      </div>
+      <canvas id="preview" width="1200" height="800"></canvas>
+      <div class="modal-controls">
+        <div>
+          <button id="zIn" class="micro">+</button>
+          <button id="zOut" class="micro">−</button>
+        </div>
+        <div class="muted">Просмотр через canvas. Скачивание отключено в демо.</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
