@@ -175,3 +175,35 @@ document.addEventListener('DOMContentLoaded', () => {
   // diagnostics
   $$('img').forEach(img => img.addEventListener('error', () => console.warn('Image load failed:', img.src)));
 });
+
+// === TO TOP BUTTON LOGIC ===
+const toTopBtn = document.getElementById('toTop');
+
+if (toTopBtn) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      toTopBtn.classList.add('show');
+    } else {
+      toTopBtn.classList.remove('show');
+    }
+  });
+
+  toTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
+
+// === FORCE TO TOP CLICK ===
+(function(){
+  const btn = document.getElementById('toTop');
+  if (!btn) return;
+
+  btn.style.display = 'flex';
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();

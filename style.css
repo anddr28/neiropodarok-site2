@@ -123,3 +123,199 @@ textarea{min-height:90px}
   .video-col.narrow{width:100%}
   .nav{gap:8px}
 }
+
+/* ================= MOBILE FIX (FINAL) ================= */
+
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* контейнер никогда не шире экрана */
+.container,
+.header,
+.footer,
+.hero,
+.section {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* HERO */
+@media (max-width: 980px) {
+  .hero {
+    grid-template-columns: 1fr !important;
+    gap: 20px;
+  }
+
+  .hero-right {
+    width: 100%;
+  }
+
+  .hero-h1 {
+    font-size: 24px;
+    line-height: 1.2;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero-cta .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* FEATURES */
+@media (max-width: 980px) {
+  .features {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+/* FORM */
+@media (max-width: 980px) {
+  .form-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-row .btn {
+    width: 100%;
+  }
+}
+
+/* GALLERY */
+@media (max-width: 980px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 480px) {
+  .gallery {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* VIDEOS */
+@media (max-width: 980px) {
+  .video-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .video-card video {
+    height: auto !important;
+    max-height: 70vh;
+  }
+}
+
+/* STEPS */
+@media (max-width: 980px) {
+  .steps {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+/* FOOTER */
+@media (max-width: 980px) {
+  .footer-inner {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+
+  .footer-col {
+    text-align: center;
+  }
+
+  .footer-col .btn {
+    width: 100%;
+  }
+}
+
+/* FAQ */
+@media (max-width: 980px) {
+  .faq-q {
+    font-size: 14px;
+  }
+
+  .faq-a {
+    font-size: 14px;
+  }
+}
+
+/* TO TOP BUTTON */
+@media (max-width: 480px) {
+  #toTop {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+    right: 12px;
+    bottom: 12px;
+  }
+}
+
+/* === FIX: TO TOP BUTTON (FINAL) === */
+#toTop {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 9999;              /* ← ГЛАВНОЕ */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;                 /* скрыта по умолчанию */
+  pointer-events: none;
+}
+
+/* видимая */
+#toTop.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* мобильная safe-zone */
+@media (max-width: 480px) {
+  #toTop {
+    bottom: 72px; /* чтобы не упиралась в край */
+  }
+}
+
+/* === FORCE TO TOP BUTTON === */
+#toTop{
+  all: unset;                 /* ← СБРОС ВСЕГО */
+  position: fixed !important;
+  right: 16px !important;
+  bottom: 16px !important;
+  z-index: 2147483647 !important;
+
+  width: 44px !important;
+  height: 44px !important;
+
+  border-radius: 50% !important;
+  background: #6e1ef6 !important;
+  color: #fff !important;
+
+  font-size: 18px !important;
+  font-weight: 800 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  cursor: pointer !important;
+  box-shadow: 0 0 20px rgba(110,30,246,.7) !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+#toTop:hover{
+  transform: translateY(-4px) scale(1.05) !important;
+}
