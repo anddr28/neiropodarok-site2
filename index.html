@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- HEADER -->
   <header class="header">
     <div class="container header-inner">
       <a class="brand" href="#top" aria-label="На главную">
@@ -24,7 +23,6 @@
         <a class="nav-link" href="#how">Как заказать</a>
         <a class="nav-link" href="#faq">FAQ</a>
 
-        <!-- соц-кнопки в header (активные) -->
         <a class="social-link header-tg" href="https://t.me/yourchannel" target="_blank" rel="noopener" aria-label="Telegram">Telegram</a>
         <a class="social-link header-vk" href="https://vk.ru" target="_blank" rel="noopener" aria-label="VK">VK</a>
 
@@ -33,7 +31,6 @@
     </div>
   </header>
 
-  <!-- MAIN -->
   <main>
     <section id="top" class="hero container">
       <div class="hero-left">
@@ -45,16 +42,13 @@
           <button id="demoBtn" class="btn btn-ghost">Посмотреть демо</button>
         </div>
 
-        <!-- метки (plain text, не кнопки) -->
         <div class="features" aria-hidden="true">
           <div class="feature"><span class="plain-label">Оформление</span><div class="f-desc">≈ 5 минут</div></div>
           <div class="feature"><span class="plain-label">Готово</span><div class="f-desc">≈ 30 минут</div></div>
         </div>
 
-        <!-- Отступ отделяющий метки и форму -->
         <div class="spacer"></div>
 
-        <!-- CREATE FORM -->
         <div id="createCard" class="card create-card" aria-labelledby="createTitle">
           <h3 id="createTitle">Создать видео-поздравление</h3>
           <form id="createForm" autocomplete="off" novalidate>
@@ -83,7 +77,6 @@
         </div>
       </div>
 
-      <!-- RIGHT: thumbs + hero video -->
       <aside class="hero-right">
         <div class="glass">
           <div class="thumb-row">
@@ -92,7 +85,6 @@
           </div>
 
           <div id="heroVideoParent" class="video-block">
-            <!-- поменять hero-видео можно через setHeroVideo('images/yourfile.mp4') -->
             <video id="heroVideo" playsinline preload="metadata" controls controlsList="nodownload" disablepictureinpicture>
               <source src="images/hero_comedy.mp4" type="video/mp4">
             </video>
@@ -102,18 +94,15 @@
       </aside>
     </section>
 
-    <!-- EXAMPLES -->
     <section id="examples" class="container section">
       <h2 class="section-title">Примеры</h2>
-
       <div class="gallery" id="gallery">
         <div class="tile" data-src="images/shapka.jpg" tabindex="0"><img src="images/shapka.jpg" alt=""></div>
         <div class="tile" data-src="images/buzova.jpg" tabindex="0"><img src="images/buzova.jpg" alt=""></div>
         <div class="tile" data-src="images/smartphone.jpg" tabindex="0"><img src="images/smartphone.jpg" alt=""></div>
         <div class="tile" data-src="images/shapka.jpg" tabindex="0"><img src="images/shapka.jpg" alt=""></div>
       </div>
-
-      <p class="muted">Кликните по фото — откроется защищённый предпросмотр.</p>
+      <p class="muted">Кликните по фото — откроется защищённый предпросмотр (canvas).</p>
 
       <div class="video-grid">
         <div class="video-col">
@@ -123,7 +112,6 @@
             </video>
             <div class="wm">demo • Neiropodarok</div>
           </div>
-
           <div class="card video-card">
             <video class="demo" playsinline controls controlsList="nodownload" disablepictureinpicture>
               <source src="images/video2.mp4" type="video/mp4">
@@ -131,7 +119,6 @@
             <div class="wm">demo • Neiropodarok</div>
           </div>
         </div>
-
         <div class="video-col narrow">
           <h3 class="mini-title">Портретное (мобайл)</h3>
           <div class="card video-card">
@@ -144,7 +131,6 @@
       </div>
     </section>
 
-    <!-- HOW -->
     <section id="how" class="container section">
       <h2 class="section-title">Как это работает</h2>
       <div class="steps">
@@ -154,7 +140,6 @@
       </div>
     </section>
 
-    <!-- FAQ -->
     <section id="faq" class="container section">
       <h2 class="section-title">FAQ</h2>
       <div class="faq">
@@ -173,7 +158,6 @@
       </div>
     </section>
 
-    <!-- FOOTER (информативный, без упоминания DRM/production или политики) -->
     <footer class="footer">
       <div class="container footer-inner">
         <div class="footer-col">
@@ -181,18 +165,15 @@
           <div class="brand-title small">Neiropodarok</div>
           <div class="muted">Персональные видео-поздравления</div>
         </div>
-
         <div class="footer-col">
           <h4>О сервисе</h4>
           <p class="muted">Мы создаём развлекательные персональные видео-поздравления с пометкой ИИ.</p>
         </div>
-
         <div class="footer-col">
           <h4>Поддержка</h4>
           <p class="muted">support@neiropodarok.example<br>+7 (000) 000-00-00</p>
           <a href="#createCard" class="btn btn-small">Оформить заказ</a>
         </div>
-
         <div class="footer-col">
           <h4>Мы в соцсетях</h4>
           <div style="display:flex;gap:10px;margin-top:8px">
@@ -201,15 +182,12 @@
           </div>
         </div>
       </div>
-
       <div class="container footer-note muted">Материалы, созданные ИИ, предназначены для развлечения. Не использовать для обмана.</div>
     </footer>
-
-    <!-- UP BUTTON -->
-    <button id="toTop" aria-label="Наверх">↑</button>
   </main>
 
-  <!-- CANVAS MODAL (overlay clickable to close) -->
+  <button id="toTop" aria-label="Наверх">↑</button>
+
   <div id="canvasModal" class="modal" aria-hidden="true" style="display:none;">
     <div class="modal-overlay" id="modalOverlay"></div>
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -223,12 +201,11 @@
           <button id="zIn" class="micro">+</button>
           <button id="zOut" class="micro">−</button>
         </div>
-        <div class="muted">Предпросмотр.</div>
+        <div class="muted">Просмотр через canvas. Скачивание отключено в демо.</div>
       </div>
     </div>
   </div>
 
   <script src="script.js" defer></script>
-<button id="toTop">↑</button>
 </body>
 </html>

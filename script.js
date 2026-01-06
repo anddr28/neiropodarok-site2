@@ -74,23 +74,15 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.style.display = 'flex';
       modal.setAttribute('aria-hidden', 'false');
     };
-    img.onerror = () => {
-      const fallback = tile.querySelector('img')?.src;
-      if (fallback) img.src = fallback;
-      else console.warn('Image load failed:', src);
-    };
     img.src = src;
   }
 
   tiles.forEach(t => {
     t.addEventListener('click', () => openTile(t));
-    t.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') openTile(t); });
   });
 
-  // close handlers: button and overlay click and ESC
   closeModalBtn.addEventListener('click', closeCanvas);
   overlay.addEventListener('click', closeCanvas);
-  window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeCanvas(); });
   function closeCanvas() {
     modal.style.display = 'none';
     modal.setAttribute('aria-hidden', 'true');
@@ -98,41 +90,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   zIn.addEventListener('click', () => { scale = Math.min(scale + 0.15, 3); draw(); });
   zOut.addEventListener('click', () => { scale = Math.max(scale - 0.15, 0.3); draw(); });
-  preview.addEventListener('contextmenu', e => e.preventDefault());
 
-  /* ---------- Video handling: vertical detection ---------- */
+  /* ---------- Video handling ---------- */
   const videos = $$('video');
   videos.forEach(v => {
-    v.setAttribute('controlsList', 'nodownload');
-    v.setAttribute('disablePictureInPicture', '');
-    v.setAttribute('playsinline', '');
-    v.addEventListener('contextmenu', e => e.preventDefault());
-    v.addEventListener('click', async () => { try { if (v.paused) await v.play(); else v.pause(); } catch(e){} });
-
     v.addEventListener('loadedmetadata', () => {
       if (v.videoHeight && v.videoWidth && v.videoHeight > v.videoWidth) {
         const parent = v.closest('.video-card') || v.closest('.video-block');
-        if (parent) {
-          parent.classList.add('vertical');
-          v.style.objectFit = 'contain';
-          v.style.maxHeight = Math.min(window.innerHeight * 0.78, 800) + 'px';
-          v.style.width = 'auto';
-        }
+        if (parent) parent.classList.add('vertical');
       }
     });
   });
-
-  /* ---------- Helper to change hero video on the fly ---------- */
-  window.setHeroVideo = function(src) {
-    const hero = $('#heroVideo');
-    if (!hero) return console.warn('Hero video not found');
-    const source = hero.querySelector('source');
-    if (source) {
-      source.src = src;
-      hero.load();
-      hero.play().catch(()=>{});
-    }
-  };
 
   /* ---------- Form (demo) ---------- */
   const createForm = $('#createForm');
@@ -140,12 +108,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (createForm) {
     createForm.addEventListener('submit', async (ev) => {
       ev.preventDefault();
-      const fd = new FormData(createForm);
-      const event = fd.get('event');
-      if (!event) { formMsg.textContent = 'Выберите событие'; formMsg.style.color = '#d04c4c'; return; }
-      formMsg.textContent = 'Отправка…'; formMsg.style.color = '';
+      formMsg.textContent = 'Отправка…';
       await new Promise(r => setTimeout(r, 900));
-      formMsg.textContent = 'Заявка принята. Менеджер свяжется с вами.'; formMsg.style.color = 'green';
+      formMsg.textContent = 'Заявка принята. Менеджер свяжется с вами.';
       createForm.reset();
     });
   }
@@ -161,49 +126,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ---------- toTop (animated) ---------- */
+  /* ---------- Кнопка "Наверх" (Рабочая логика) ---------- */
   const toTop = $('#toTop');
-  toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  window.addEventListener('scroll', () => { toTop.style.display = window.scrollY > 200 ? 'flex' : 'none'; });
-  toTop.style.display = 'none';
+  if (toTop) {
+    window.addEventListener('scroll', () => {
+      // Кнопка появляется после прокрутки на 300px
+      if (window.scrollY > 300) {
+        toTop.classList.add('show');
+      } else {
+        toTop.classList.remove('show');
+      }
+    });
 
-  // nav/demo/order buttons behavior
+    toTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  // Навигация по кнопкам
   $('#demoBtn').addEventListener('click', () => document.getElementById('examples').scrollIntoView({ behavior: 'smooth' }));
   $('#orderBtn').addEventListener('click', () => document.getElementById('createCard').scrollIntoView({ behavior: 'smooth' }));
   $('#topOrder').addEventListener('click', () => document.getElementById('createCard').scrollIntoView({ behavior: 'smooth' }));
-
-  // diagnostics
-  $$('img').forEach(img => img.addEventListener('error', () => console.warn('Image load failed:', img.src)));
 });
-
-// === TO TOP BUTTON LOGIC ===
-const toTopBtn = document.getElementById('toTop');
-
-if (toTopBtn) {
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-      toTopBtn.classList.add('show');
-    } else {
-      toTopBtn.classList.remove('show');
-    }
-  });
-
-  toTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
-}
-
-// === FORCE TO TOP CLICK ===
-(function(){
-  const btn = document.getElementById('toTop');
-  if (!btn) return;
-
-  btn.style.display = 'flex';
-
-  btn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-})();
